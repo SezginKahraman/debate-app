@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import generateRandomUsername from '../utilities/usernameGenerator';
 
 const socket = io('http://localhost:5000');
 
@@ -7,10 +8,12 @@ const DebateRoom = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [currentSpeaker, setCurrentSpeaker] = useState(null);
-  const username = 'User1';  // Katılımcı adı (bunu dinamik hale getirebilirsiniz)
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
-    socket.emit('join', username);  // Katılımcıyı ekle
+    const newUsername = generateRandomUsername();
+    setUsername(newUsername);
+    socket.emit('join', newUsername);  // Katılımcıyı ekle
     socket.on('message', (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
@@ -28,9 +31,10 @@ const DebateRoom = () => {
   return (
     <div>
       <h2>Debate Room</h2>
+      <h2>User {username}</h2>
       <div>
         {messages.map((msg, index) => (
-          <div key={index}>{msg}</div>
+          <div key={index + 1}>{msg}</div>
         ))}
       </div>
       {currentSpeaker && <h3>Current Speaker: {currentSpeaker}</h3>}
