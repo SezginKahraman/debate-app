@@ -1,0 +1,36 @@
+/* src/styles/EventList.css */
+
+.event-list {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  .event {
+    margin-bottom: 20px;
+  }
+  
+  .event h3 {
+    margin-bottom: 10px;
+  }
+  
+  .event p {
+    margin-bottom: 10px;
+  }
+  
+  .event button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .event button:hover {
+    background-color: #555;
+  }

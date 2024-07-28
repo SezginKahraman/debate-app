@@ -1,43 +1,33 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
+// src/App.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // switch => Routes
+import store from './store';
+import HomePage from './components/HomePage';
 import DebateRoom from './components/DebateRoom';
-import RefereePanel from './components/RefereePanel';
+import Register from './components/Register';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import EventList from './components/EventList';
+import Notification from './components/Notification';
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/debate" element={<DebateRoom/>} />
-        <Route path="/referee" element={<RefereePanel/>} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<HomePage/>} />
+                  <Route path="/debateroom" element={<DebateRoom/>} />
+                  <Route path="/register" element={<Register/>} />
+                  <Route path="/login" element={<Login/>} />
+                  <Route path="/profile" element={<Profile/>} />
+                  <Route path="/events" element={<EventList/>} />
+                  <Route path="/notifications" element={<Notification/>} />
+                </Routes>
+              </Router>
+    </Provider>
   );
-};
+}
 
 export default App;
